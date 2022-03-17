@@ -26,7 +26,9 @@
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 'cypress run'",
     "typecheck": "tsc -b && tsc -b cypress"
   },
-  "prettier": {},
+  "prettier": {
+    "semi": false
+  },
   "eslintIgnore": [
     "/node_modules",
     "/build",
