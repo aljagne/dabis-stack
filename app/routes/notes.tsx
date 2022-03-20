@@ -1,23 +1,23 @@
-import { Form, json, useLoaderData, Outlet, Link, NavLink } from "remix";
-import type { LoaderFunction } from "remix";
+import { Form, json, useLoaderData, Outlet, Link, NavLink } from "remix"
+import type { LoaderFunction } from "remix"
 
-import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
-import { getNoteListItems } from "~/models/note.server";
+import { requireUserId } from "~/session.server"
+import { useUser } from "~/utils"
+import { getNoteListItems } from "~/models/note.server"
 
 type LoaderData = {
-  noteListItems: Awaited<ReturnType<typeof getNoteListItems>>;
-};
+  noteListItems: Awaited<ReturnType<typeof getNoteListItems>>
+}
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const userId = await requireUserId(request);
-  const noteListItems = await getNoteListItems({ userId });
-  return json<LoaderData>({ noteListItems });
-};
+  const userId = await requireUserId(request)
+  const noteListItems = await getNoteListItems({ userId })
+  return json<LoaderData>({ noteListItems })
+}
 
 export default function NotesPage() {
-  const data = useLoaderData() as LoaderData;
-  const user = useUser();
+  const data = useLoaderData() as LoaderData
+  const user = useUser()
 
   return (
     <div className="flex h-full min-h-screen flex-col">
@@ -69,5 +69,5 @@ export default function NotesPage() {
         </div>
       </main>
     </div>
-  );
+  )
 }
